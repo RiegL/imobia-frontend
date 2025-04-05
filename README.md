@@ -1,75 +1,71 @@
-# Nuxt Minimal Starter
+# 🎨 Imobia - Front-end
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Este é o front-end da aplicação **Imobia**, feito com [Nuxt 3](https://nuxt.com/) e [Vuetify](https://vuetifyjs.com/). Permite gerenciar clientes de forma intuitiva e visual.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## ⚙️ Funcionalidades
+
+- ✅ Listagem de clientes
+- ✅ Cadastro via modal com validações
+- ✅ Atualização e exclusão de clientes
+- ✅ Interface responsiva e moderna com Vuetify
+- ✅ Feedback visual com Snackbars
+
+---
+
+## 🛠️ Instalação
 
 ```bash
-# npm
+# Clone o repositório
+git clone https://github.com/seu-usuario/imobia-frontend.git
+cd imobia-frontend
+
+# Instale as dependências
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Inicie o servidor de desenvolvimento
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+---
 
-Build the application for production:
+## 🌐 Configuração da API
 
-```bash
-# npm
-npm run build
+No arquivo `nuxt.config.ts`:
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+```ts
+export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://localhost:3333' // Endereço do seu back-end
+    }
+  }
+})
 ```
 
-Locally preview production build:
+---
 
-```bash
-# npm
-npm run preview
+## 📁 Estrutura de Diretórios
 
-# pnpm
-pnpm preview
+- `pages/index.vue` – Página inicial
+- `pages/clients.vue` – CRUD de clientes
+- `components/ClientTable.vue` – Tabela de exibição
+- `components/ClientForm.vue` – Formulário de cadastro/edição
+- `components/ConfirmDelete.vue` – Modal de exclusão
 
-# yarn
-yarn preview
+---
 
-# bun
-bun run preview
-```
+## 💅 Tecnologias
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Vue 3 + Nuxt 3
+- Vuetify
+- Axios
+- Vite
+- Pinia (opcional para estado)
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por [Seu Nome](https://github.com/seu-usuario)
