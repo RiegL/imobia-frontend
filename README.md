@@ -35,9 +35,13 @@ Este é o frontend da aplicação **Imobia**, desenvolvido com Nuxt 3, Vue 3 e V
 ```bash
 # Instalar dependências
 npm install
+#ou
+yarn
 
 # Rodar localmente
 npm run dev
+#ou
+yarn dev
 ```
 
 > 💡 Certifique-se de que o backend esteja rodando em `http://localhost:3333`
