@@ -11,26 +11,18 @@
             <v-card class="pa-4" outlined>
               <v-card-title class="d-flex justify-space-between align-center">
                 <span class="text-h6">Lista de Clientes</span>
-                <v-btn
-                  color="primary"
-                  variant="flat"
-                  size="small"
-                  @click="openForm"
-                  prepend-icon="mdi-plus"
-                >
+                <v-btn color="primary" variant="flat" size="small" @click="openForm" prepend-icon="mdi-plus">
                   Novo Cliente
                 </v-btn>
               </v-card-title>
 
               <v-card-text>
-                <v-data-table
-                  :headers="headers"
-                  :items="clients"
-                  item-value="id"
-                  class="elevation-1"
-                  no-data-text="Nenhum cliente encontrado"
-                >
+                <v-data-table :headers="headers" :items="clients" item-value="id" class="elevation-1"
+                  no-data-text="Nenhum cliente encontrado">
                   <template #item.actions="{ item }">
+                    <v-btn icon size="small" :to="`/clients/${item.id}`" title="Ver Detalhes">
+                      <v-icon color="green">mdi-eye</v-icon>
+                    </v-btn>
                     <v-btn icon size="small" @click="editClient(item)">
                       <v-icon color="blue">mdi-pencil</v-icon>
                     </v-btn>
@@ -38,6 +30,7 @@
                       <v-icon color="red">mdi-delete</v-icon>
                     </v-btn>
                   </template>
+
                 </v-data-table>
               </v-card-text>
             </v-card>
@@ -46,18 +39,15 @@
       </v-container>
     </v-main>
 
+
     <v-footer app color="primary" dark>
       <v-container class="text-center">
         <span>&copy; 2025 Imobia. Todos os direitos reservados.</span>
       </v-container>
     </v-footer>
 
-    <ClientForm
-      v-model="showForm"
-      :initialData="selectedClient"
-      :isEdit="!!selectedClient?.id"
-      @submit="handleSubmit"
-    />
+    <ClientForm v-model="showForm" :initialData="selectedClient" :isEdit="!!selectedClient?.id"
+      @submit="handleSubmit" />
 
     <ConfirmDeleteDialog v-model="showConfirm" @confirm="handleDelete" />
   </v-app>

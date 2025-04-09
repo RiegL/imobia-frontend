@@ -7,13 +7,13 @@
     <v-main>
       <v-container class="mt-10">
         <v-row dense class="mb-4" justify="center">
-          <!-- Visão Geral -->
+          <!-- visão Geral -->
 
           <v-col class="d-flex justify-start mb-4" cols="12">
             <v-subheader class="text-h6">Visão Geral</v-subheader>
           </v-col>
 
-          <!-- Total de Clientes centralizado -->
+          <!-- total de clientes  -->
           <v-col cols="12" md="6" offset-md-4>
             <v-card class="pa-4" elevation="2" color="blue-grey-lighten-5">
               <v-card-title>
@@ -26,7 +26,7 @@
             </v-card>
           </v-col>
 
-          <!-- Clientes por Mês -->
+          <!-- clientes por Mês -->
           <v-col cols="12" md="6">
             <v-card class="pa-4" elevation="2" color="blue-grey-lighten-5">
               <v-card-title>
@@ -42,13 +42,13 @@
 
           <v-divider class="my-6" />
 
-          <!-- Detalhes Demográficos -->
+          <!-- Detalhes  -->
           <v-col cols="12">
             <v-subheader class="text-h6">Distribuição de Clientes</v-subheader>
           </v-col>
 
 
-          <!-- Média de Renda -->
+          <!-- média de renda -->
           <v-col cols="12" md="6">
             <v-card class="pa-4" elevation="2" color="blue-grey-lighten-5">
               <v-card-title>
@@ -62,7 +62,7 @@
             </v-card>
           </v-col>
 
-          <!-- Clientes por Cidade -->
+          <!-- clientes por cidade -->
           <v-col cols="12" md="6">
             <v-card class="pa-4" elevation="2" color="blue-grey-lighten-5">
               <v-card-title>
@@ -80,7 +80,7 @@
           <v-divider class="my-6" />
 
 
-          <!-- Coluna com duas Ações Rápidas embaixo uma da outra -->
+          
           <v-col cols="12" md="6">
             <v-row dense>
 
@@ -114,7 +114,7 @@
 
             </v-row>
           </v-col>
-          <!-- Tipos de Empresa -->
+          <!-- tipos de empresa -->
           <v-col cols="12" md="6">
             <v-card class="pa-4" elevation="2" color="blue-grey-lighten-5">
               <v-card-title>
@@ -156,8 +156,7 @@ const incomeChartData = ref(null)
 const monthlyChartData = ref(null)
 const cityChartData = ref(null)
 const companyChartData = ref(null)
-const maxIncome = ref(0)  // Nova variável para maior renda
-
+const maxIncome = ref(0)  
 const barOptions = {
   responsive: true,
   plugins: {
@@ -190,10 +189,10 @@ const fetchData = async () => {
       axios.get('http://localhost:3333/clients/report/company-types')
     ])
 
-    // Total de clientes
+    // total de clientes
     totalClients.value = totalRes.data.total || 0
 
-    // Média de renda e maior renda
+    // media de renda e maior renda
     const incomeStats = incomeRes.data.averageIncome || {}
     const avgIncome = incomeStats.averageIncome || 0
     maxIncome.value = incomeStats.maxIncome || 0
@@ -209,7 +208,7 @@ const fetchData = async () => {
       ]
     }
 
-    // Clientes por mês
+    // clientes por mês
     monthlyChartData.value = {
       labels: monthRes.data.map(item => {
         const [year, month] = item.month.split('-')
@@ -224,7 +223,7 @@ const fetchData = async () => {
       ]
     }
 
-    // Clientes por cidade
+    // clientes por cidade
     cityChartData.value = {
       labels: cityRes.data.map(item => item.city),
       datasets: [
@@ -236,7 +235,7 @@ const fetchData = async () => {
       ]
     }
 
-    // Tipos de empresa
+    // tipos de empresa
     const companyData = companyRes.data
     companyChartData.value = {
       labels: Object.keys(companyData),

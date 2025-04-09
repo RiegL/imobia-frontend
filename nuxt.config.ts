@@ -1,18 +1,26 @@
 export default defineNuxtConfig({
-  css: [
-    'vuetify/styles',
-    '@mdi/font/css/materialdesignicons.css'
-  ],
+  app: {
+    head: {
+      title: "Imobia",
+      meta: [
+        {
+          name: "description",
+          content: "Gerenciamento de clientes com ASAAS e relatórios",
+        },
+      ],
+    },
+  },
+  css: ["vuetify/styles", "@mdi/font/css/materialdesignicons.css"],
 
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
 
   vite: {
     define: {
-      'process.env.DEBUG': false,
+      "process.env.DEBUG": false,
     },
   },
 
-  compatibilityDate: '2025-04-07',
-})
+  compatibilityDate: "2025-04-07",
+});
