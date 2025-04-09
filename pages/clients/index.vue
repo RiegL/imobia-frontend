@@ -5,32 +5,31 @@
     </v-app-bar>
 
     <v-main>
+
       <v-container class="mt-10">
         <v-row justify="center">
           <v-col cols="12" md="10">
+            <v-card-actions class="mt-6">
+              <v-btn color="primary" @click="goBack" prepend-icon="mdi-arrow-left">
+                Voltar
+              </v-btn>
+            </v-card-actions>
             <v-card class="pa-4" outlined>
               <v-card-title class="d-flex justify-space-between align-center">
                 <span class="text-h6">Lista de Clientes</span>
-                <v-btn
-                  color="primary"
-                  variant="flat"
-                  size="small"
-                  @click="openForm"
-                  prepend-icon="mdi-plus"
-                >
+
+                <v-btn color="primary" variant="flat" size="small" @click="openForm" prepend-icon="mdi-plus">
                   Novo Cliente
                 </v-btn>
               </v-card-title>
 
               <v-card-text>
-                <v-data-table
-                  :headers="headers"
-                  :items="clients"
-                  item-value="id"
-                  class="elevation-1"
-                  no-data-text="Nenhum cliente encontrado"
-                >
+                <v-data-table :headers="headers" :items="clients" item-value="id" class="elevation-1"
+                  no-data-text="Nenhum cliente encontrado">
                   <template #item.actions="{ item }">
+                    <v-btn icon size="small" :to="`/clients/${item.id}`" title="Ver Detalhes">
+                      <v-icon color="green">mdi-eye</v-icon>
+                    </v-btn>
                     <v-btn icon size="small" @click="editClient(item)">
                       <v-icon color="blue">mdi-pencil</v-icon>
                     </v-btn>
@@ -38,6 +37,7 @@
                       <v-icon color="red">mdi-delete</v-icon>
                     </v-btn>
                   </template>
+
                 </v-data-table>
               </v-card-text>
             </v-card>
@@ -46,18 +46,15 @@
       </v-container>
     </v-main>
 
+
     <v-footer app color="primary" dark>
       <v-container class="text-center">
         <span>&copy; 2025 Imobia. Todos os direitos reservados.</span>
       </v-container>
     </v-footer>
 
-    <ClientForm
-      v-model="showForm"
-      :initialData="selectedClient"
-      :isEdit="!!selectedClient?.id"
-      @submit="handleSubmit"
-    />
+    <ClientForm v-model="showForm" :initialData="selectedClient" :isEdit="!!selectedClient?.id"
+      @submit="handleSubmit" />
 
     <ConfirmDeleteDialog v-model="showConfirm" @confirm="handleDelete" />
   </v-app>
@@ -68,18 +65,23 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import ClientForm from '@/components/ClientForm.vue'
 import ConfirmDeleteDialog from '@/components/ConfirmDeleteDialog.vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const clients = ref([])
 const showForm = ref(false)
 const showConfirm = ref(false)
 const selectedClient = ref(null)
-
+const router = useRouter()
 const headers = [
   { title: 'Nome', value: 'name' },
   { title: 'Email', value: 'email' },
   { title: 'Cidade', value: 'province' },
   { title: 'Ações', value: 'actions', sortable: false }
 ]
+
+const goBack = () => {
+    router.back()
+  }
 
 const fetchClients = async () => {
   const { data } = await axios.get('http://localhost:3333/clients')

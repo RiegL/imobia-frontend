@@ -22,6 +22,6 @@
   </template>
   
   <script setup>
-  // Você pode adicionar lógica aqui se necessário.
+
   </script>
   
